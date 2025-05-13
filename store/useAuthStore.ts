@@ -86,7 +86,8 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   addCode: async () => {
     try {
       if (get().user?.points! < 1000) {
-        ToastAndroid.show("Insufficient points", ToastAndroid.SHORT)
+        ToastAndroid.show("Insufficient points", ToastAndroid.SHORT);
+        return;
       }
 
       await axiosInstance.get(`/webhooks/redeem/get/${get().user?._id}`);
